@@ -5,15 +5,18 @@ import { useGetServers } from "../hooks/useGetServers";
 
 export default function Home() {
   const { data, isLoading } = useGetServers();
-  if (isLoading) return <HomeSkeleton />;
   return (
     <div>
       <Nav />
-      <div className="flex mt-12 flex-wrap justify-center w-full rounded border shadow  dark:divide-gray-700 md:p-6 dark:border-gray-700">
-        {data?.data.map((s) => (
-          <ServerElement {...s} key={s.name} />
-        ))}
-      </div>
+      {isLoading ? (
+        <HomeSkeleton />
+      ) : (
+        <div className="flex mt-16 flex-wrap justify-center w-full shadow">
+          {data?.data.map((s) => (
+            <ServerElement {...s} key={s.name} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

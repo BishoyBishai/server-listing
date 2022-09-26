@@ -13,7 +13,7 @@ export default function HomeSkeleton() {
   return (
     <div
       role="status"
-      className="flex flex-wrap justify-center w-full rounded border shadow  dark:divide-gray-700 md:p-6 dark:border-gray-700"
+      className="flex mt-16 flex-wrap justify-center w-full rounded shadow md:p-6 "
     >
       {Array(10)
         .fill(1)

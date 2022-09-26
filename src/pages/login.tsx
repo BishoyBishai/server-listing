@@ -3,13 +3,15 @@ import React, { useCallback } from "react";
 import useForm from "../hooks/useForm";
 import { LoginRequestBody, useLogin } from "../hooks/useLogin";
 import { ValidationType } from "../models/validation";
-import Logo from "./../assets/images/logo.png";
 import translation from "./../localize/en.json";
 import Input from "../components/From/Input";
 import Loading from "../components/ui/Loading";
+import { LogoDark, LogoLight } from "../components/ui/icons";
+import { useThemeContext } from "../contexts/themeContext";
 
 function Login() {
   const { mutate: doLogin, isLoading, isError } = useLogin();
+  const { theme } = useThemeContext();
 
   const { formData, formErrors, setFormData, isValid } = useForm<
     "username" | "password"
@@ -62,8 +64,8 @@ function Login() {
     <div className="h-screen flex items-center justify-center">
       <div className="container flex h-full items-baseline md:items-center">
         <div className="flex items-center justify-center flex-col sm:flex-row container px-6 py-12">
-          <div className="w-4/12 md:w-3/12">
-            <input type="image" src={Logo} className="w-full" alt="Logo" />
+          <div className="flex w-full md:w-3/12 h-20 justify-center md:origin-center md:scale-150">
+            {theme === "light" ? <LogoDark /> : <LogoLight />}
           </div>
           <form
             noValidate

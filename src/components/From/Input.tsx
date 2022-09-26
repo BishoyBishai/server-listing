@@ -27,7 +27,7 @@ function Input({ error, onBlur, onChange, label, ...props }: InputProps) {
   return (
     <div className="w-full">
       {label && (
-        <div className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+        <div className="block uppercase tracking-wide text-gray-700 dark:text-white text-xs font-bold mb-2">
           {label}
         </div>
       )}

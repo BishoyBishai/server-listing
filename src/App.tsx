@@ -1,7 +1,3 @@
 export const App = () => {
-  return (
-    <>
-      <h1>Nord Layer</h1>
-    </>
-  );
+  return <div className="p-0 m-0">Nord Layer</div>;
 };

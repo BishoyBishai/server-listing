@@ -25,3 +25,4 @@ I left `.env` file out for testing's purpose. into the `.gitignore` file
 - [Babel](https://babeljs.io/)
 - [Prettier](https://prettier.io/)
 - [husky](https://typicode.github.io/husky/)
+- [tailwindcss](https://tailwindcss.com/)

@@ -3,6 +3,7 @@ import useForm from "../../hooks/useForm";
 import { ValidationType } from "../../models/validation";
 import Input from "../ui/Input";
 import Logo from "./../../assets/images/logo.png";
+import translation from "./../../localize/en.json";
 
 export default function LoginForm() {
   const { formData, formErrors, setFormData, isValid } = useForm<
@@ -12,7 +13,7 @@ export default function LoginForm() {
       validations: [
         {
           type: ValidationType.REQUIRED,
-          message: "username is required",
+          message: translation.login.username.required,
         },
       ],
       value: "",
@@ -21,12 +22,12 @@ export default function LoginForm() {
       validations: [
         {
           type: ValidationType.REQUIRED,
-          message: "Password is required",
+          message: translation.login.password.required,
         },
         {
           type: ValidationType.MIN_LENGTH,
           minLength: 8,
-          message: "Password has to be 8 length at least",
+          message: translation.login.password.passwordLength,
         },
       ],
       value: "",
@@ -55,17 +56,18 @@ export default function LoginForm() {
             <div className="w-full mb-8">
               <Input
                 name="username"
-                label="Username"
+                label={translation.login.username.label}
+                placeholder={translation.login.username.placeholder}
                 value={formData.username}
                 onBlur={handleInputBlur}
                 error={formErrors.username}
               />
             </div>
-
             <div className="w-full mb-8">
               <Input
                 name="password"
-                label="Password"
+                label={translation.login.password.label}
+                placeholder={translation.login.password.placeholder}
                 type="password"
                 value={formData.password}
                 onBlur={handleInputBlur}
@@ -80,7 +82,7 @@ export default function LoginForm() {
               data-mdb-ripple="true"
               data-mdb-ripple-color="light"
             >
-              Sign in
+              {translation.login.signInCTA}
             </button>
           </div>
         </div>

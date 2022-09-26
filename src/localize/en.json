@@ -1,0 +1,16 @@
+{
+  "login": {
+    "username": {
+      "label": "Username",
+      "placeholder": "Sign in with your username.",
+      "required": "Required username Field"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Use your password to log in.",
+      "required": "Required Password Field",
+      "passwordLength": "Password must have at least 8 letters."
+    },
+    "signInCTA": "Login"
+  }
+}

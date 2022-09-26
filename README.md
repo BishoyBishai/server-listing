@@ -29,3 +29,9 @@ I left `.env` file out for testing's purpose. into the `.gitignore` file
 - [react-router-dom v6](https://reactrouter.com/en/main)
 - [react query](https://tanstack.com/query/v4)
 
+## Open discussion
+
+#### How can the token be verified? 
+
+#### How is the servers list paginated?
+

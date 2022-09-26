@@ -1,5 +1,5 @@
 import withErrorBoundaryCheck from "../components/Error/ErrorBoundary";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import useForm from "../hooks/useForm";
 import { LoginRequestBody, useLogin } from "../hooks/useLogin";
 import { ValidationType } from "../models/validation";
@@ -8,9 +8,11 @@ import Input from "../components/From/Input";
 import Loading from "../components/ui/Loading";
 import { LogoDark, LogoLight } from "../components/ui/icons";
 import { useThemeContext } from "../contexts/themeContext";
+import useIsAuth from "../hooks/useIsAuth";
 
 function Login() {
   const { mutate: doLogin, isLoading, isError } = useLogin();
+  const isAuth = useIsAuth();
   const { theme } = useThemeContext();
 
   const { formData, formErrors, setFormData, isValid } = useForm<
@@ -59,6 +61,9 @@ function Login() {
     },
     [doLogin, formData]
   );
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => isAuth(), []);
 
   return (
     <div className="h-screen flex items-center justify-center">

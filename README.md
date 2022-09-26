@@ -11,6 +11,13 @@ React.js is used for a simple task of listing servers to authenticated users.
 I left `.env` file out for testing's purpose. into the `.gitignore` file
 
 
+## Installation 
+
+```bash
+  yarn install
+```
+
+
 ## Running in development mode
 
 
@@ -32,12 +39,13 @@ I left `.env` file out for testing's purpose. into the `.gitignore` file
 - [Webpack 5](https://webpack.js.org/blog/2020-10-10-webpack-5-release/)
 - [Babel](https://babeljs.io/)
 - [Prettier](https://prettier.io/)
-- [Husky](https://typicode.github.io/husky/)
-- [Tailwindcss](https://tailwindcss.com/)
-- [React-router-dom v6](https://reactrouter.com/en/main)
-- [React query](https://tanstack.com/query/v4)
-- [Nginx](https://www.nginx.com/)
-- [Docker](https://www.docker.com/)
+- [husky](https://typicode.github.io/husky/)
+- [tailwindcss](https://tailwindcss.com/)
+- [react-router-dom v6](https://reactrouter.com/en/main)
+- [react query](https://tanstack.com/query/v4)
+- [jest](https://jestjs.io/)
+- [nginx](https://www.nginx.com/)
+- [docker]()
 
 ## Open discussion
 

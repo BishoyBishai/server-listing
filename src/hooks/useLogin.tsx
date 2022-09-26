@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
+import customAxios from "../utils/api";
 import { setSessionToken } from "../utils/token";
 
 const { BASE_URL } = process.env;
@@ -11,21 +11,10 @@ export interface LoginRequestBody {
 }
 
 export const loginAPI = async (data: LoginRequestBody) => {
-  const headers = {
-    "Content-Type": "application/json",
-  };
-
-  axios.defaults.proxy = {
-    host: BASE_URL as string,
-    port: 80,
-    protocol: "https",
-  };
-
-  return await axios({
+  return await customAxios({
     url: `${BASE_URL}/tokens`,
     method: "post",
     data,
-    headers,
   });
 };
 export const useLogin = () => {

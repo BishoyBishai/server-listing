@@ -37,10 +37,8 @@ customAxios.interceptors.response.use(
   },
   async (err) => {
     const originalConfig = err.config;
-    if (originalConfig.url !== "/tokens") {
-      if (err.response.status === 401) {
-        clearSessionToken();
-      }
+    if (!isPublicAPI(originalConfig.url) && err.response.status === 401) {
+      clearSessionToken();
     }
     return Promise.reject(err);
   }

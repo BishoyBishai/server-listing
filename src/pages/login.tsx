@@ -68,8 +68,8 @@ function Login() {
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="container flex h-full items-baseline md:items-center">
-        <div className="flex items-center justify-center flex-col sm:flex-row container px-6 py-12">
-          <div className="flex w-full md:w-3/12 h-20 justify-center md:origin-center md:scale-150">
+        <div className="flex items-center justify-center flex-col lg:flex-row container px-6 py-12">
+          <div className="flex w-full md:w-3/12 h-20 justify-center md:origin-center sm:scale-150">
             {theme === "light" ? <LogoDark /> : <LogoLight />}
           </div>
           <form

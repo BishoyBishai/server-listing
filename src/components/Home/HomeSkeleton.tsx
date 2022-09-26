@@ -12,13 +12,14 @@ const ServerElementSkeleton = () => (
 export default function HomeSkeleton() {
   return (
     <div
+      data-testid="home-skeleton"
       role="status"
       className="flex mt-16 flex-wrap justify-center w-full rounded shadow md:p-6 "
     >
       {Array(10)
         .fill(1)
-        .map((i) => (
-          <ServerElementSkeleton key={i} />
+        .map((_, index) => (
+          <ServerElementSkeleton key={index} />
         ))}
     </div>
   );

@@ -4,7 +4,7 @@ import useForm from "../hooks/useForm";
 import { LoginRequestBody, useLogin } from "../hooks/useLogin";
 import { ValidationType } from "../models/validation";
 import translation from "./../localize/en.json";
-import Input from "../components/From/Input";
+import Input from "../components/Form/Input";
 import Loading from "../components/ui/Loading";
 import { LogoDark, LogoLight } from "../components/ui/icons";
 import { useThemeContext } from "../contexts/themeContext";
@@ -102,9 +102,8 @@ function Login() {
             <button
               type="submit"
               disabled={!isValid}
+              data-testid="submit-login"
               className="inline-block px-7 py-3 bg-nord-layer-500 text-gray-700 font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-nord-layer-700 hover:shadow-lg focus:bg-nord-layer-700 disabled:bg-gray-500 disabled:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-nord-layer-800 active:shadow-lg transition duration-150 ease-in-out w-full"
-              data-mdb-ripple="true"
-              data-mdb-ripple-color="light"
             >
               {!isLoading ? (
                 <div className="inline mr-2 w-8 h-8">

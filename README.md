@@ -28,6 +28,8 @@ I left `.env` file out for testing's purpose. into the `.gitignore` file
 - [tailwindcss](https://tailwindcss.com/)
 - [react-router-dom v6](https://reactrouter.com/en/main)
 - [react query](https://tanstack.com/query/v4)
+- [jest](https://jestjs.io/)
+
 
 ## Open discussion
 

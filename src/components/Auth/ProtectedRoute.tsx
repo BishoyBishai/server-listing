@@ -1,4 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom";
+import { getAccessSessionToken } from "../../utils/token";
 
 interface ProtectedRouteProps {
   redirectTo: string;
@@ -6,7 +7,7 @@ interface ProtectedRouteProps {
 }
 
 function ProtectedRoute({ children, redirectTo }: ProtectedRouteProps) {
-  const token = null; // we make check if we have token
+  const token = getAccessSessionToken(); // we make check if we have token
 
   const location = useLocation();
 

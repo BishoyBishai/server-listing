@@ -9,7 +9,6 @@ function Input({ error, onBlur, onChange, label, ...props }: InputProps) {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setInputValue(e.target.value);
       onChange && onChange(e);
-      isDirty.current = true;
     },
     [onChange]
   );

@@ -11,6 +11,7 @@
       "required": "Required Password Field",
       "passwordLength": "Password must have at least 8 letters."
     },
-    "signInCTA": "Login"
+    "signInCTA": "Login",
+    "formError": "Please double-check your login information."
   }
 }

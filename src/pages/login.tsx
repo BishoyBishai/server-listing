@@ -2,7 +2,6 @@ import withErrorBoundaryCheck from "../components/Error/ErrorBoundary";
 import React, { useCallback, useEffect } from "react";
 import useForm from "../hooks/useForm";
 import { LoginRequestBody, useLogin } from "../hooks/useLogin";
-import { ValidationType } from "../models/validation";
 import translation from "./../localize/en.json";
 import Input from "../components/Form/Input";
 import Loading from "../components/ui/Loading";
@@ -21,7 +20,7 @@ function Login() {
     username: {
       validations: [
         {
-          type: ValidationType.REQUIRED,
+          type: "REQUIRED",
           message: translation.login.username.required,
         },
       ],
@@ -30,11 +29,11 @@ function Login() {
     password: {
       validations: [
         {
-          type: ValidationType.REQUIRED,
+          type: "REQUIRED",
           message: translation.login.password.required,
         },
         {
-          type: ValidationType.MIN_LENGTH,
+          type: "MIN_LENGTH",
           minLength: 8,
           message: translation.login.password.passwordLength,
         },

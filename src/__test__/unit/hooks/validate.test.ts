@@ -1,4 +1,3 @@
-import { ValidationType } from "../../../models/validation";
 import { validate } from "../../../utils/validations";
 
 describe("validation", () => {
@@ -8,33 +7,26 @@ describe("validation", () => {
     });
 
     it("If the required value is an empty array, a validation message must be returned.", () => {
-      expect(
-        validate("", [
-          { type: ValidationType.REQUIRED, message: "required" },
-        ])[0]
-      ).toBe("required");
+      expect(validate("", [{ type: "REQUIRED", message: "required" }])[0]).toBe(
+        "required"
+      );
     });
 
     it("If the required value is just spaces, a validation message must be returned.", () => {
       expect(
-        validate("           ", [
-          { type: ValidationType.REQUIRED, message: "required" },
-        ])[0]
+        validate("           ", [{ type: "REQUIRED", message: "required" }])[0]
       ).toBe("required");
     });
 
     it("If the required value is number 0, must returns empty array", () => {
       expect(
-        validate(111, [{ type: ValidationType.REQUIRED, message: "required" }])
-          .length
+        validate(111, [{ type: "REQUIRED", message: "required" }]).length
       ).toBe(0);
     });
 
     it("If the required value is string, must returns empty array", () => {
       expect(
-        validate("test", [
-          { type: ValidationType.REQUIRED, message: "required" },
-        ]).length
+        validate("test", [{ type: "REQUIRED", message: "required" }]).length
       ).toBe(0);
     });
   });
@@ -44,7 +36,7 @@ describe("validation", () => {
       expect(
         validate("", [
           {
-            type: ValidationType.MIN_LENGTH,
+            type: "MIN_LENGTH",
             minLength: 8,
             message: "at least 8 letters",
           },
@@ -56,7 +48,7 @@ describe("validation", () => {
       expect(
         validate("testing1234", [
           {
-            type: ValidationType.MIN_LENGTH,
+            type: "MIN_LENGTH",
             minLength: 8,
             message: "at least 8 letters",
           },
@@ -67,11 +59,11 @@ describe("validation", () => {
       expect(
         validate("", [
           {
-            type: ValidationType.REQUIRED,
+            type: "REQUIRED",
             message: "required",
           },
           {
-            type: ValidationType.MIN_LENGTH,
+            type: "MIN_LENGTH",
             minLength: 8,
             message: "at least 8 letters",
           },

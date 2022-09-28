@@ -20,6 +20,4 @@ type MatchValidation = BasicValidation & {
 };
 
 export type Validation<E extends ValidationType = ValidationType> =
-  | (BasicValidation<E> & RequiredValidation)
-  | MinValidation
-  | MatchValidation;
+  BasicValidation<E> & (RequiredValidation | MinValidation | MatchValidation);

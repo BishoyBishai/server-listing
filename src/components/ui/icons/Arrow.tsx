@@ -1,9 +1,9 @@
 import { SVGProps } from "react";
 
-function Arrow(props: SVGProps<SVGSVGElement>) {
+function Arrow({ className, ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      className="ml-2 w-4 h-4"
+      className={`ml-2 w-4 h-4 ${className}`}
       aria-hidden="true"
       fill="none"
       stroke="currentColor"

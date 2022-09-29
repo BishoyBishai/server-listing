@@ -4,6 +4,7 @@ import sortList from "../../utils/sort";
 import { capitalizeFirstLetter } from "../../utils/text";
 import Dropdown from "./Dropdown";
 import translation from "./../../localize/en.json";
+import { Arrow } from "./icons";
 
 interface ListProps<T extends object>
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -57,6 +58,26 @@ const createListReducer =
     }
   };
 
+const DropDownOption = ({
+  option,
+  currentOrder,
+  orderDirection,
+}: {
+  option: string;
+  currentOrder: string;
+  orderDirection: OrderDirection;
+}) => {
+  const text = capitalizeFirstLetter(option);
+  return (
+    <div className="flex items-center justify-center">
+      {text}{" "}
+      {option === currentOrder && (
+        <Arrow className={`${orderDirection === "asc" ? "rotate-180" : ""}`} />
+      )}
+    </div>
+  );
+};
+
 function List<T extends object>({
   data,
   indexBy,
@@ -109,7 +130,13 @@ function List<T extends object>({
             orderKeys
               ? orderKeys.map((k) => ({
                   key: k as string,
-                  DisplayText: capitalizeFirstLetter(k as string),
+                  DisplayText: (
+                    <DropDownOption
+                      option={k as string}
+                      currentOrder={state.orderBy as string}
+                      orderDirection={state.orderDirection}
+                    />
+                  ),
                 }))
               : []
           }

@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 
 interface DropdownOption {
   key: string;
-  DisplayText: string;
+  DisplayText: React.ReactNode;
 }
 interface DropdownProps {
   text: string;

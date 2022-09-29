@@ -1,4 +1,5 @@
 import { Server } from "../../models/server";
+import List from "../ui/List";
 import ServerElement from "./ServerElement";
 
 interface SeversListProps {
@@ -6,14 +7,14 @@ interface SeversListProps {
 }
 function SeversList({ data }: SeversListProps) {
   return (
-    <div
+    <List
       data-testid="home-server-list"
-      className="flex mt-14 flex-wrap justify-center w-full shadow"
-    >
-      {data.map((s) => (
-        <ServerElement {...s} key={s.name} />
-      ))}
-    </div>
+      className="flex mt-2 flex-wrap justify-center w-full shadow"
+      data={data}
+      optionContainerClassNames="flex mt-16 p-4 flex-wrap w-full shadow"
+      orderKeys={["name", "distance"]}
+      renderComponent={ServerElement}
+    ></List>
   );
 }
 

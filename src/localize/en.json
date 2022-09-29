@@ -14,5 +14,8 @@
     "signInCTA": "Login",
     "formError": "Please double-check your login information."
   },
-  "logout": "Log out"
+  "logout": "Log out",
+  "list": {
+    "sortBy": "Sort by"
+  }
 }

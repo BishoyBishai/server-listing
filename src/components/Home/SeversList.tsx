@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { Server } from "../../models/server";
 import List from "../ui/List";
 import ServerElement from "./ServerElement";
@@ -13,7 +14,9 @@ function SeversList({ data }: SeversListProps) {
       data={data}
       optionContainerClassNames="flex mt-16 p-4 flex-wrap w-full shadow"
       orderKeys={["name", "distance"]}
-      renderComponent={ServerElement}
+      renderComponent={ forwardRef((props, ref) => {
+        return <ServerElement {...props} forwardedRef={ref} />;
+      });}
     ></List>
   );
 }

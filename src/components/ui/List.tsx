@@ -1,15 +1,19 @@
-import { ComponentType, Fragment, useCallback, useReducer } from "react";
+import { Fragment, useCallback, useReducer } from "react";
 import { OrderDirection } from "../../models/general";
 import sortList from "../../utils/sort";
 import { capitalizeFirstLetter } from "../../utils/text";
 import Dropdown from "./Dropdown";
 import translation from "./../../localize/en.json";
 import { Arrow } from "./icons";
+import useInfiniteScrolling from "../../hooks/useInfiniteScrolling";
 
 interface ListProps<T extends object>
   extends React.HTMLAttributes<HTMLDivElement> {
   data: T[];
-  renderComponent: ComponentType<T>;
+  renderComponent: (props: {
+    data: T;
+    ref?: (instance: HTMLElement | null) => void;
+  }) => React.ReactNode;
   optionContainerClassNames?: string;
   orderKeys?: (keyof T)[];
   indexBy?: keyof T;
@@ -86,12 +90,15 @@ function List<T extends object>({
   optionContainerClassNames,
   ...props
 }: ListProps<T>) {
-  const RenderItem = renderComponent;
   const listReducer = createListReducer<T>();
   const [state, dispatch] = useReducer(listReducer, {
     orderDirection: "asc",
     orderBy: null,
     displayData: data,
+  });
+  const { ref, displayedData } = useInfiniteScrolling({
+    data: state.displayData,
+    displayLimit: 10,
   });
 
   const changeOrderBy = useCallback(
@@ -143,11 +150,14 @@ function List<T extends object>({
         />
       </div>
       <div {...props}>
-        {state.displayData.map((s, i) => {
+        {displayedData.map((s, i) => {
           const key = indexBy ? `${s[indexBy]}` : i;
           return (
             <Fragment key={key}>
-              <RenderItem {...s} />
+              {renderComponent({
+                ref: displayedData.length === i + 1 ? ref : undefined,
+                data: s,
+              })}
             </Fragment>
           );
         })}

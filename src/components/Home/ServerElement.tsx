@@ -1,16 +1,12 @@
-interface ServerElementProps extends React.ForwardedRef<HTMLDivElement> {
+import { HTMLProps } from "react";
+
+interface ServerElementProps extends HTMLProps<HTMLDivElement> {
   distance: number;
   name: string;
 }
 const ServerElement = ({ name, distance, ...props }: ServerElementProps) => {
-  console.log("====================================");
-  console.log({ props });
-  console.log("====================================");
   return (
-    <div
-      className="p-4 m-4 w-full bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700 md:w-5/12 lg:w-3/12"
-      {...props}
-    >
+    <div {...props}>
       <div className="mb-4">
         <div className="mb-2 text-xl font-bold  text-gray-900 dark:text-white ">
           {name}

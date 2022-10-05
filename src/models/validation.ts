@@ -1,7 +1,6 @@
 export type ValidationType = "REQUIRED" | "MIN_LENGTH" | "MATCH";
 
-export interface BasicValidation<E extends ValidationType = ValidationType> {
-  type: E;
+export interface BasicValidation {
   message: string;
 }
 
@@ -19,5 +18,5 @@ type MatchValidation = BasicValidation & {
   regex: RegExp;
 };
 
-export type Validation<E extends ValidationType = ValidationType> =
-  BasicValidation<E> & (RequiredValidation | MinValidation | MatchValidation);
+export type Validation = BasicValidation &
+  (RequiredValidation | MinValidation | MatchValidation);

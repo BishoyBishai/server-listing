@@ -1,18 +1,31 @@
-import { ComponentType, Fragment, useCallback, useReducer } from "react";
+import { Fragment, useCallback, useReducer, useEffect } from "react";
 import { OrderDirection } from "../../models/general";
 import sortList from "../../utils/sort";
 import { capitalizeFirstLetter } from "../../utils/text";
 import Dropdown from "./Dropdown";
 import translation from "./../../localize/en.json";
 import { Arrow } from "./icons";
+import useInfiniteScrolling from "../../hooks/useInfiniteScrolling";
 
-interface ListProps<T extends object>
+interface ListOwnProps<T extends object>
   extends React.HTMLAttributes<HTMLDivElement> {
   data: T[];
-  renderComponent: ComponentType<T>;
+  renderComponent: (props: { data: T }) => React.ReactNode;
   optionContainerClassNames?: string;
+  optionClassNames?: string;
   orderKeys?: (keyof T)[];
   indexBy?: keyof T;
+  lazyList?: boolean;
+  displayOptionLimit?: number;
+}
+
+interface ListProps {
+  lazyList?: false;
+}
+
+interface LazyListProps {
+  lazyList: true;
+  displayOptionLimit: number;
 }
 
 type BasicListAction = {
@@ -84,14 +97,21 @@ function List<T extends object>({
   orderKeys,
   renderComponent,
   optionContainerClassNames,
+  optionClassNames,
+  lazyList,
   ...props
-}: ListProps<T>) {
-  const RenderItem = renderComponent;
+}: ListOwnProps<T> & (ListProps | LazyListProps)) {
   const listReducer = createListReducer<T>();
   const [state, dispatch] = useReducer(listReducer, {
     orderDirection: "asc",
     orderBy: null,
     displayData: data,
+  });
+  const { ref, displayedData, reCalculatedData } = useInfiniteScrolling({
+    data: state.displayData,
+    displayLimit: lazyList
+      ? (props.displayOptionLimit as number)
+      : state.displayData.length,
   });
 
   const changeOrderBy = useCallback(
@@ -113,6 +133,10 @@ function List<T extends object>({
     },
     [changeOrderBy, changeOrderDirection, state.orderBy]
   );
+
+  useEffect(() => {
+    reCalculatedData(state.displayData);
+  }, [reCalculatedData, state]);
 
   return (
     <Fragment>
@@ -143,12 +167,18 @@ function List<T extends object>({
         />
       </div>
       <div {...props}>
-        {state.displayData.map((s, i) => {
+        {displayedData.map((s, i) => {
           const key = indexBy ? `${s[indexBy]}` : i;
           return (
-            <Fragment key={key}>
-              <RenderItem {...s} />
-            </Fragment>
+            <div
+              ref={displayedData.length !== i + 1 ? ref : null}
+              className={optionClassNames}
+              key={key}
+            >
+              {renderComponent({
+                data: s,
+              })}
+            </div>
           );
         })}
       </div>
